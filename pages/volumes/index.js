@@ -1,18 +1,24 @@
-import Link from "next/link";
 import { introduction, volumes } from "../../lib/data";
+import Link from "../../components/Link";
+import {
+  StyledList,
+  StyledListItem,
+  StyledHeading,
+  StyledParagraph,
+} from "../../components/StylesVolumes";
 
 export default function Volumes() {
   return (
     <>
-      <h1>The Lord of the Rings</h1>
-      <p>{introduction}</p>
-      <ul>
+      <StyledHeading>The Lord of the Rings</StyledHeading>
+      <StyledParagraph>{introduction}</StyledParagraph>
+      <StyledList role="list">
         {volumes.map((volume) => (
-          <li key={volume.id}>
-            <Link href={`/volumes/${volume.slug}`}>{volume.title}</Link>
-          </li>
+          <StyledListItem key={volume.slug}>
+            <Link href={`/volumes/${volume.slug}`}>{volume.title} ➔</Link>
+          </StyledListItem>
         ))}
-      </ul>
+      </StyledList>
     </>
   );
 }

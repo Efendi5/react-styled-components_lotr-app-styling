@@ -9,5 +9,9 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: system-ui;
+    padding: 2rem;
+    margin: 2rem;
+    text-align: center;
+    background-color: lightblue;
   }
 `;

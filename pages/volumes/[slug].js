@@ -1,7 +1,14 @@
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { volumes } from "../../lib/data";
+import Link from "../../components/Link";
+import {
+  StyledHeading,
+  StyledParagraph,
+  StyledList,
+  StyledListItem,
+  StyledDiv,
+} from "../../components/StylesSlug";
 
 export default function VolumeDetail() {
   const router = useRouter();
@@ -22,15 +29,15 @@ export default function VolumeDetail() {
   return (
     <>
       <Link href="/volumes">← All Volumes</Link>
-      <h1>{title}</h1>
-      <p>{description}</p>
-      <ul>
+      <StyledHeading>{title}</StyledHeading>
+      <StyledParagraph>{description}</StyledParagraph>
+      <StyledList role="list">
         {books.map(({ ordinal, title }) => (
-          <li key={title}>
+          <StyledListItem key={title}>
             {ordinal}: <strong>{title}</strong>
-          </li>
+          </StyledListItem>
         ))}
-      </ul>
+      </StyledList>
       <Image
         src={cover}
         alt={`Cover image of ${title}`}
@@ -38,18 +45,18 @@ export default function VolumeDetail() {
         height={230}
       />
       {previousVolume ? (
-        <div>
+        <StyledDiv>
           <Link href={`/volumes/${previousVolume.slug}`}>
             ← Previous Volume: {previousVolume.title}
           </Link>
-        </div>
+        </StyledDiv>
       ) : null}
       {nextVolume ? (
-        <div>
+        <StyledDiv>
           <Link href={`/volumes/${nextVolume.slug}`}>
             Next Volume: {nextVolume.title} →
           </Link>
-        </div>
+        </StyledDiv>
       ) : null}
     </>
   );
